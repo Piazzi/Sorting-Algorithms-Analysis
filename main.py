@@ -4,6 +4,7 @@ import time
 import random
 from bubbleSort import bubbleSort
 from insertionSort import insertionSort
+from selectionSort import selectionSort
 from quickSort import quickSort
 from mergeSort import mergeSort
 from heapSort import heapSort
@@ -50,13 +51,17 @@ def generateEntries(n, unique, type, order):
 #endTimeBubbleSort = time.time()
 #print("BUBBLESORT",alist, "bubblesort time: ",endTimeBubbleSort-startTimeBubbleSort , " s" )
 
+#alist = generateEntries(100, 'false', 'integer', 'random')
+#startTimeInsertionSort = time.time()
+#insertionSort(alist)
+#endTimeInsertionSort = time.time()
+#print("INSERTION SORT",alist, "insertion sort time: ",endTimeInsertionSort-startTimeInsertionSort , " s" )
+
 alist = generateEntries(100, 'false', 'integer', 'random')
-startTimeInsertionSort = time.time()
-insertionSort(alist)
-endTimeInsertionSort = time.time()
-print("INSERTION SORT",alist, "insertion sort time: ",endTimeInsertionSort-startTimeInsertionSort , " s" )
-
-
+startTimeSelectionSort = time.time()
+selectionSort(alist)
+endTimeSelectionSort = time.time()
+print("SELECTION SORT",alist, "selection sort time: ",endTimeSelectionSort - startTimeSelectionSort, " s" )
 
 #alist = generateEntries(100, 'false', 'integer', 'random')
 #startTimeQuickSort = time.time()
