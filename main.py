@@ -18,26 +18,30 @@ from heapSort import heapSort
 #elementos são reais não necessariamente inteiros e os casos em que os dados estão ordenadas,
 #inversamente, ordenadas, bem como quando são dispostos de forma aleatória.
 
-def generateEntries(n, unique, type):
+def generateEntries(n, unique, type, order):
     entries = []
-    i = 0
     if unique == 'true':
         entries = random.sample(range(-10000, 10000), n)
-        if type == 'float':
-            entries = [x/10 for x in entries]
-        return entries
     else:
+        i = 0
         while i < n:
-            if type == 'float':
-                entries.append(random.uniform(-10000, 10000))
-            else:
-                entries.append(np.random.randint(-10000, 10000))
+            entries.append(np.random.randint(-10000, 10000))
             i = i + 1
-        return entries
+            
+    if type == 'float':
+        entries = [x/10 for x in entries]
+        
+    if order == 'ascending':
+        entries.sort()
+    elif order == 'descending':
+        entries.sort(reverse=True)
+        
+    print(entries)
+    return entries
     
 
 #PRINT
-alist = generateEntries(100, 'true', 'float')
+alist = generateEntries(100, 'false', 'integer', 'random')
 startTimeQuickSort = time.time()
 quickSort(alist)
 endTimeQuickSort = time.time()
