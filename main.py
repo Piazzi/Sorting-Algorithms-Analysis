@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time  
 import random
+from bubbleSort import bubbleSort
 from quickSort import quickSort
 from mergeSort import mergeSort
 from heapSort import heapSort
@@ -37,16 +38,24 @@ def generateEntries(n, unique, type, order):
         entries.sort(reverse=True)
         
     print(entries)
+    print('\n')
     return entries
     
 
 #PRINT
 alist = generateEntries(100, 'false', 'integer', 'random')
-startTimeQuickSort = time.time()
-quickSort(alist)
-endTimeQuickSort = time.time()
-qsTime= endTimeQuickSort-startTimeQuickSort
-print("QUICKSORT",alist, "quicksort time: ",qsTime , " s" )
+startTimeBubbleSort = time.time()
+bubbleSort(alist)
+endTimeBubbleSort = time.time()
+print("BUBBLESORT",alist, "bubblesort time: ",endTimeBubbleSort-startTimeBubbleSort , " s" )
+
+
+#alist = generateEntries(100, 'false', 'integer', 'random')
+#startTimeQuickSort = time.time()
+#quickSort(alist)
+#endTimeQuickSort = time.time()
+#qsTime= endTimeQuickSort-startTimeQuickSort
+#print("QUICKSORT",alist, "quicksort time: ",qsTime , " s" )
 
 
 #alist = generateEntries(100, 0, 'integer')
