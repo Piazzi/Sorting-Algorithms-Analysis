@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import time  
+import random
 from quickSort import quickSort
 from mergeSort import mergeSort
 from heapSort import heapSort
@@ -20,14 +21,18 @@ from heapSort import heapSort
 def generateEntries(n, unique, type):
     entries = []
     i = 0
-    while i < n:
-        entries.append(np.random.randint(-10000, 10000))
-        i = i + 1
-    return entries
+    if unique == 'true':
+        entries = random.sample(range(-10000, 10000), n)
+        return entries
+    else:
+        while i < n:
+            entries.append(np.random.randint(-10000, 10000))
+            i = i + 1
+        return entries
     
 
 #PRINT
-alist = generateEntries(100, 0, 'integer')
+alist = generateEntries(100, 'true', 'integer')
 startTimeQuickSort = time.time()
 quickSort(alist)
 endTimeQuickSort = time.time()
@@ -53,15 +58,15 @@ print("HEAPSORT",alist , "heapsort time: ", hsTime, " s" )
 
 
 # Data for plotting
-t = np.arange(0.0, 2.0, 0.01)
-s = 1 + np.sin(2 * np.pi * t)
+#t = np.arange(0.0, 2.0, 0.01)
+#s = 1 + np.sin(2 * np.pi * t)
 
-fig, ax = plt.subplots()
-ax.plot(t, s)
+#fig, ax = plt.subplots()
+#ax.plot(t, s)
 
-ax.set(xlabel='time (s)', ylabel='Iteration',
-       title='Time x Entries graph')
-ax.grid()
+#ax.set(xlabel='time (s)', ylabel='Iteration',
+#       title='Time x Entries graph')
+#ax.grid()
 
-fig.savefig("test.png")
-plt.show()
+#fig.savefig("test.png")
+#plt.show()
