@@ -23,16 +23,21 @@ def generateEntries(n, unique, type):
     i = 0
     if unique == 'true':
         entries = random.sample(range(-10000, 10000), n)
+        if type == 'float':
+            entries = [x/10 for x in entries]
         return entries
     else:
         while i < n:
-            entries.append(np.random.randint(-10000, 10000))
+            if type == 'float':
+                entries.append(random.uniform(-10000, 10000))
+            else:
+                entries.append(np.random.randint(-10000, 10000))
             i = i + 1
         return entries
     
 
 #PRINT
-alist = generateEntries(100, 'true', 'integer')
+alist = generateEntries(100, 'true', 'float')
 startTimeQuickSort = time.time()
 quickSort(alist)
 endTimeQuickSort = time.time()
@@ -40,20 +45,20 @@ qsTime= endTimeQuickSort-startTimeQuickSort
 print("QUICKSORT",alist, "quicksort time: ",qsTime , " s" )
 
 
-alist = generateEntries(100, 0, 'integer')
-startTimeMergeSort = time.time()
-mergeSort(alist)
-endTimeMergeSort = time.time()
-msTime = endTimeMergeSort - startTimeMergeSort
-print("MERGESORT",alist , "mergesort time: ", msTime, " s" )
+#alist = generateEntries(100, 0, 'integer')
+#startTimeMergeSort = time.time()
+#mergeSort(alist)
+#endTimeMergeSort = time.time()
+#msTime = endTimeMergeSort - startTimeMergeSort
+#print("MERGESORT",alist , "mergesort time: ", msTime, " s" )
 
 
-alist = generateEntries(100, 0, 'integer')
-startTimeHeapSort = time.time()
-heapSort(alist)
-endTimeHeapSort = time.time()
-hsTime = endTimeHeapSort - startTimeHeapSort
-print("HEAPSORT",alist , "heapsort time: ", hsTime, " s" )
+#alist = generateEntries(100, 0, 'integer')
+#startTimeHeapSort = time.time()
+#heapSort(alist)
+#endTimeHeapSort = time.time()
+#hsTime = endTimeHeapSort - startTimeHeapSort
+#print("HEAPSORT",alist , "heapsort time: ", hsTime, " s" )
 #PRINT 
 
 
