@@ -3,6 +3,7 @@ import numpy as np
 import time  
 import random
 from bubbleSort import bubbleSort
+from insertionSort import insertionSort
 from quickSort import quickSort
 from mergeSort import mergeSort
 from heapSort import heapSort
@@ -43,11 +44,18 @@ def generateEntries(n, unique, type, order):
     
 
 #PRINT
+#alist = generateEntries(100, 'false', 'integer', 'random')
+#startTimeBubbleSort = time.time()
+#bubbleSort(alist)
+#endTimeBubbleSort = time.time()
+#print("BUBBLESORT",alist, "bubblesort time: ",endTimeBubbleSort-startTimeBubbleSort , " s" )
+
 alist = generateEntries(100, 'false', 'integer', 'random')
-startTimeBubbleSort = time.time()
-bubbleSort(alist)
-endTimeBubbleSort = time.time()
-print("BUBBLESORT",alist, "bubblesort time: ",endTimeBubbleSort-startTimeBubbleSort , " s" )
+startTimeInsertionSort = time.time()
+insertionSort(alist)
+endTimeInsertionSort = time.time()
+print("INSERTION SORT",alist, "insertion sort time: ",endTimeInsertionSort-startTimeInsertionSort , " s" )
+
 
 
 #alist = generateEntries(100, 'false', 'integer', 'random')
@@ -55,7 +63,7 @@ print("BUBBLESORT",alist, "bubblesort time: ",endTimeBubbleSort-startTimeBubbleS
 #quickSort(alist)
 #endTimeQuickSort = time.time()
 #qsTime= endTimeQuickSort-startTimeQuickSort
-#print("QUICKSORT",alist, "quicksort time: ",qsTime , " s" )
+#print("QUICK SORT",alist, "quicksort time: ",qsTime , " s" )
 
 
 #alist = generateEntries(100, 0, 'integer')
