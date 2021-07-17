@@ -2,13 +2,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time  
 import random
-from bubbleSort import bubbleSort
-from insertionSort import insertionSort
-from selectionSort import selectionSort
-from bogoSort import bogoSort
-from quickSort import quickSort
-from mergeSort import mergeSort
-from heapSort import heapSort
+from algorithms.bubbleSort import bubbleSort
+from algorithms.insertionSort import insertionSort
+from algorithms.selectionSort import selectionSort
+from algorithms.bogoSort import bogoSort
+from algorithms.quickSort import quickSort
+from algorithms.mergeSort import mergeSort
+from algorithms.heapSort import heapSort
 
 #Trabalho de Análise e Projeto de Algoritmos - DCC001
 #Professor: Stênio Sã Rosário Furtado Soares
