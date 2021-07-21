@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time  
 import random
+import copy
 from algorithms.bubbleSort import bubbleSort
 from algorithms.insertionSort import insertionSort
 from algorithms.selectionSort import selectionSort
@@ -41,23 +42,30 @@ class Test(object):
         self.type = type
         self.order = order
         self.algorithm = algorithm
+        # create the entries once
+        self.entries = {
+            10: self.generateEntries(10), 
+            100: self.generateEntries(100), 
+            1000: self.generateEntries(1000), 
+            10000: self.generateEntries(10000),
+            100000: self.generateEntries(100000)
+        }
     
     # each test runned stores it's information in the following variables
     executionTimes = []
-    sizes = []
     comparisons = []
     
     # Generates a random n size vector. The numbers in the vector will be in range between -10000 and 10000.
     # unique = indicates if the numbers in the array should be unique or not
     # type = indicates whether numbers should be float or integer
     # order = indicates whether the returned array should be ordered, inverse ordered or random.
-    def generateEntries(self):
+    def generateEntries(self, n):
         entries = []
         if self.unique == True:
-            entries = random.sample(range(-10000, 10000), self.n)
+            entries = random.sample(range(-10000, 10000), n)
         else:
             i = 0
-            while i < self.n:
+            while i < n:
                 entries.append(np.random.randint(-10000, 10000))
                 i = i + 1
                 
@@ -75,7 +83,8 @@ class Test(object):
     
     # Run the algorithm for the given parameters
     def runTest(self):
-        entries = self.generateEntries()
+        entries = copy.deepcopy(self.entries[self.n])
+        print(entries)
         startTime = time.time()
         #each algorithm returns the numbers of comparisons made
         count = self.algorithm(entries)
@@ -84,7 +93,6 @@ class Test(object):
         
         # saves the data generated from the execution in the class variables
         self.executionTimes.append(executionTime)
-        self.sizes.append(self.n)
         self.comparisons.append(count)
         
         print("Numbers to orderes: ", self.n, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
@@ -93,7 +101,7 @@ class Test(object):
     def drawGraph(self):
         print('Graph Generated')
         names = list(self.comparisons)
-        values = list(self.sizes)
+        values = list(self.executionTimes)
 
         fig, axs = plt.subplots(1, 3, figsize=(9, 3), sharey=True)
         axs[0].bar(names, values)
@@ -125,11 +133,11 @@ class Test(object):
 
 test = Test(10, False, 'integer', 'random', bubbleSort)
 test.runTest()
-test.setTest(100, False, 'integer', 'random', bubbleSort)
+test.setTest(10, False, 'integer', 'random', selectionSort)
 test.runTest()
-test.setTest(1000, False, 'integer', 'random', bubbleSort)
+test.setTest(10, False, 'integer', 'random', bogoSort)
 test.runTest()
-test.setTest(10000, False, 'integer', 'random', bubbleSort)
+test.setTest(10, False, 'integer', 'random', insertionSort)
 test.runTest()
 test.drawGraph()
 
