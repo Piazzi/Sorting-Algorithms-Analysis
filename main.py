@@ -69,7 +69,7 @@ class Test(object):
         elif self.order == 'descending':
             entries.sort(reverse=True)
             
-        print(entries)
+        #print(entries)
         print('\n')
         return entries
     
@@ -87,7 +87,7 @@ class Test(object):
         self.sizes.append(self.n)
         self.comparisons.append(count)
         
-        print("Numbers to orderes: ", entries, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
+        print("Numbers to orderes: ", self.n, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
         
     # draw a graph based on the tests runned
     def drawGraph(self):
@@ -125,7 +125,11 @@ class Test(object):
 
 test = Test(10, False, 'integer', 'random', bubbleSort)
 test.runTest()
-test(100, False, 'integer', 'random', bubbleSort)
+test.setTest(100, False, 'integer', 'random', bubbleSort)
+test.runTest()
+test.setTest(1000, False, 'integer', 'random', bubbleSort)
+test.runTest()
+test.setTest(10000, False, 'integer', 'random', bubbleSort)
 test.runTest()
 test.drawGraph()
 
