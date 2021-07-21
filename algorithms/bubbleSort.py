@@ -1,6 +1,6 @@
 def bubbleSort(arr):
     n = len(arr)
-  
+    count = 0
     # Traverse through all array elements
     for i in range(n-1):
         # Last i elements are already in place
@@ -10,3 +10,5 @@ def bubbleSort(arr):
             # than the next element
             if arr[j] > arr[j + 1] :
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                count = count + 1
+    return count

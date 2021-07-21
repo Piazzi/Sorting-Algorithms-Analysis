@@ -1,22 +1,25 @@
 import random
 
 # Sorts array a[0..n-1] using Bogo sort
-def bogoSort(a):
-    n = len(a)
-    while (is_sorted(a)== False):
-        shuffle(a)
+def bogoSort(arr):
+    count = 0
+    while (is_sorted(arr, count) == False):
+        shuffle(arr)
+        count = count + 1
+    return count
  
 # To check if array is sorted or not
-def is_sorted(a):
-    n = len(a)
-    for i in range(0, n-1):
-        if (a[i] > a[i+1] ):
+def is_sorted(arr, count):
+    n = len(arr)
+    for i in range(0, n - 1):
+        if (arr[i] > arr[i+1] ):
+            count = count + 1
             return False
     return True
  
 # To generate permutation of the array
-def shuffle(a):
-    n = len(a)
+def shuffle(arr):
+    n = len(arr)
     for i in range (0,n):
         r = random.randint(0,n-1)
-        a[i], a[r] = a[r], a[i]
+        arr[i], arr[r] = arr[r], arr[i]

@@ -83,9 +83,9 @@ def generateEntries(n, unique, type, order):
 
 alist = generateEntries(10, False, 'integer', 'random')
 startTimeBogoSort = time.time()
-bogoSort(alist)
+count = bogoSort(alist)
 endTimeBogoSort = time.time()
-print("BOGO SORT",alist, "bogo sort time: ",endTimeBogoSort - startTimeBogoSort, " s" )
+print("BOGO SORT",alist, "bogo sort time: ",endTimeBogoSort - startTimeBogoSort, " s" , "COMPARISONS: ", count)
 
 #alist = generateEntries(100, 'false', 'integer', 'random')
 #startTimeQuickSort = time.time()
