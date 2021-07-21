@@ -30,9 +30,10 @@ from algorithms.heapSort import heapSort
 #comparação, relacione somente os algoritmos não eficientes e eficientes entre si. Por exemplo, não
 #relacione, analise ou compare, o algoritmo BubbleSort com o QuickSort.
 
-#This is the main ADT of the project, it creates the entries and runs each algorithm based
+#This is the main ADT (Abstract Data Type) of the project, it creates the entries and runs each algorithm based
 # on the parameters receveid.
 class Test(object):
+    
     """Constructor"""
     def __init__(self, n, unique, type, order, algorithm):
         self.n = n
@@ -40,8 +41,12 @@ class Test(object):
         self.type = type
         self.order = order
         self.algorithm = algorithm
-        
-        
+    
+    # each test runned stores it's information in the following variables
+    executionTimes = []
+    sizes = []
+    comparisons = []
+    
     # Generates a random n size vector. The numbers in the vector will be in range between -10000 and 10000.
     # unique = indicates if the numbers in the array should be unique or not
     # type = indicates whether numbers should be float or integer
@@ -75,9 +80,35 @@ class Test(object):
         #each algorithm returns the numbers of comparisons made
         count = self.algorithm(entries)
         endTime = time.time()
-        print("Numbers to orderes: ", entries, 'Execution Time: ', endTime - startTime, "s", "Number of Comparisons: ", count)
+        executionTime = endTime - startTime
         
+        # saves the data generated from the execution in the class variables
+        self.executionTimes.append(executionTime)
+        self.sizes.append(self.n)
+        self.comparisons.append(count)
         
+        print("Numbers to orderes: ", entries, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
+        
+    # draw a graph based on the tests runned
+    def drawGraph(self):
+        print('Graph Generated')
+        names = list(self.comparisons)
+        values = list(self.sizes)
+
+        fig, axs = plt.subplots(1, 3, figsize=(9, 3), sharey=True)
+        axs[0].bar(names, values)
+        axs[1].scatter(names, values)
+        axs[2].plot(names, values)
+        fig.suptitle('Categorical Plotting')
+        plt.show()
+     
+    # sets a new test based on the parameters 
+    def setTest(self, n, unique, type, order, algorithm):
+        self.n = n
+        self.unique = unique
+        self.type = type
+        self.order = order
+        self.algorithm = algorithm
 
 
 
@@ -94,40 +125,7 @@ class Test(object):
 
 test = Test(10, False, 'integer', 'random', bubbleSort)
 test.runTest()
+test(100, False, 'integer', 'random', bubbleSort)
+test.runTest()
+test.drawGraph()
 
-#t = np.arange(endTimeBubbleSort-startTimeBubbleSort, 2000.0, 300000.0)
-#s = np.arange(count, 20000,123123 )
-
-#fig, ax = plt.subplots()
-#ax.plot(t, s)
-
-#ax.set(xlabel='Tempo (s)', ylabel='N° Comparações',
-#       title='Bubble Sort')
-#ax.grid()
-
-#fig.savefig("graphs/bubblesort/test.png")
-#plt.show()
-
-#https://matplotlib.org/stable/gallery/lines_bars_and_markers/categorical_variables.html#sphx-glr-gallery-lines-bars-and-markers-categorical-variables-py
-
-
-# data from United Nations World Population Prospects (Revision 2019)
-# https://population.un.org/wpp/, license: CC BY 3.0 IGO
-# year = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2018]
-# population_by_continent = {
-#     'africa': [228, 284, 365, 477, 631, 814, 1044, 1275],
-#     'americas': [340, 425, 519, 619, 727, 840, 943, 1006],
-#     'asia': [1394, 1686, 2120, 2625, 3202, 3714, 4169, 4560],
-#     'europe': [220, 253, 276, 295, 310, 303, 294, 293],
-#     'oceania': [12, 15, 19, 22, 26, 31, 36, 39],
-# }
-
-# fig, ax = plt.subplots()
-# ax.stackplot(year, population_by_continent.values(),
-#              labels=population_by_continent.keys())
-# ax.legend(loc='upper left')
-# ax.set_title('World population')
-# ax.set_xlabel('Year')
-# ax.set_ylabel('Number of people (millions)')
-
-# plt.show()
