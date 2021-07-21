@@ -84,13 +84,11 @@ class Test(object):
     # Run the algorithm for the given parameters
     def runTest(self):
         entries = copy.deepcopy(self.entries[self.n])
-        print(entries)
         startTime = time.time()
         #each algorithm returns the numbers of comparisons made
         count = self.algorithm(entries)
         endTime = time.time()
         executionTime = endTime - startTime
-        
         # saves the data generated from the execution in the class variables
         self.executionTimes.append(executionTime)
         self.comparisons.append(count)
@@ -129,15 +127,14 @@ class Test(object):
 # seja pelo tamanho, tipo ou configuração (ordenado, não ordenado ou quase ordenado), 
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
-# ------------------------------ BUBBLE SORT ------------------------------ 
 
-test = Test(10, False, 'integer', 'random', bubbleSort)
-test.runTest()
-test.setTest(10, False, 'integer', 'random', selectionSort)
-test.runTest()
-test.setTest(10, False, 'integer', 'random', bogoSort)
-test.runTest()
-test.setTest(10, False, 'integer', 'random', insertionSort)
-test.runTest()
-test.drawGraph()
+t = Test(1000, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(1000, False, 'integer', 'random', insertionSort)
+t.runTest()
+t.setTest(1000, False, 'integer', 'random', selectionSort)
+t.runTest()
+t.setTest(1000, False, 'integer', 'random', bogoSort)
+t.runTest()
+t.drawGraph()
 
