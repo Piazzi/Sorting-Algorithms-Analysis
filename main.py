@@ -22,9 +22,26 @@ from algorithms.heapSort import heapSort
 #elementos são reais não necessariamente inteiros e os casos em que os dados estão ordenadas,
 #inversamente, ordenadas, bem como quando são dispostos de forma aleatória.
 
+#Análise dos algoritmos:
+#A análise deve ser feita sobre o número de comparações entre elementos do conjunto.
+#Lembrem-se que os dados coletados devem ser organizados na forma de tabelas e a visualização
+#destes dados na forma de gráficos facilita a análise e a leitura do texto final. A partir das tabelas e
+#gráficos, desenvolva o texto sobre a análise dos algoritmos, um importante elemento do trabalho. Para
+#comparação, relacione somente os algoritmos não eficientes e eficientes entre si. Por exemplo, não
+#relacione, analise ou compare, o algoritmo BubbleSort com o QuickSort.
+
+# Função que retorna um vetor de entradas de tamanho n, podendo ter números unicos ou não,
+# de acordo com  o que for indicado na variável unique. Sendo inteiro ou float,indicado pela 
+# variável type. E sendo um vetor ordenado, ordenado inversamente ou aleatório de acordo
+# com o que for indicado pela variável order.
+
+# Generates a random n size vector.
+# unique = indicates if the numbers in the array should be unique or not
+# type = indicates whether numbers should be float or integer
+# order = indicates whether the returned array should be ordered, inverse ordered or random.
 def generateEntries(n, unique, type, order):
     entries = []
-    if unique == 'true':
+    if unique == True:
         entries = random.sample(range(-10000, 10000), n)
     else:
         i = 0
@@ -64,7 +81,7 @@ def generateEntries(n, unique, type, order):
 #endTimeSelectionSort = time.time()
 #print("SELECTION SORT",alist, "selection sort time: ",endTimeSelectionSort - startTimeSelectionSort, " s" )
 
-alist = generateEntries(10, 'false', 'integer', 'random')
+alist = generateEntries(10, False, 'integer', 'random')
 startTimeBogoSort = time.time()
 bogoSort(alist)
 endTimeBogoSort = time.time()
