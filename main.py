@@ -60,7 +60,7 @@ class Test(object):
     def generateEntries(self, n):
         entries = []
         if self.unique == True:
-            entries = random.sample(range(-100000, 100000), n)
+            entries = random.sample(range(-10000, 10000), n)
         else:
             i = 0
             while i < n:
@@ -109,15 +109,25 @@ class Test(object):
         # y axis
         values = list(self.executionTimes)
 
+       
         fig, axs = plt.subplots(1, 3, figsize=(9, 3), sharey=True)
         axs[0].bar(names, values)
         axs[1].scatter(names, values)
         axs[2].plot(names, values)
+        plt.ylabel('Tempo de Execução')
+        plt.xlabel('N° Comparações')
         
-        
-        fig.suptitle('Categorical Plotting')
+        fig.suptitle(self.algorithm.__name__)
         plt.show()
      
+        # plt.plot(x, x, label='linear')  # Plot some data on the (implicit) axes.
+        # plt.plot(x, x**2, label='quadratic')  # etc.
+        # plt.plot(x, x**3, label='cubic')
+        # plt.xlabel('x label')
+        # plt.ylabel('y label')
+        # plt.title("Simple Plot")
+        # plt.legend()
+        
     # sets a new test based on the parameters 
     def setTest(self, n, unique, type, order, algorithm):
         self.n = n
@@ -138,11 +148,13 @@ class Test(object):
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
 
-t = Test(5, False, 'integer', 'random', bogoSort)
-t.runTest()
-t.setTest(10, False, 'integer', 'random', bogoSort)
-t.runTest()
-t.drawGraph()
+# t = Test(5, False, 'integer', 'random', bogoSort)
+# t.runTest()
+# t.setTest(10, False, 'integer', 'random', bogoSort)
+# t.runTest()
+# t.setTest(15, False, 'integer', 'random', bogoSort)
+# t.runTest()
+# t.drawGraph()
 #t.setTest(12, False, 'integer', 'random', bogoSort)
 #t.runTest()
 
