@@ -1,3 +1,5 @@
+#Created by: Camila Vieira e Lucas Piazzi
+
 import matplotlib.pyplot as plt
 import numpy as np
 import time  
@@ -10,11 +12,6 @@ from algorithms.bogoSort import bogoSort
 from algorithms.quickSort import quickSort
 from algorithms.mergeSort import mergeSort
 from algorithms.heapSort import heapSort
-
-#Trabalho de Análise e Projeto de Algoritmos - DCC001
-#Professor: Stênio Sã Rosário Furtado Soares
-#Turma A 2021.1 - Ensino Remoto Emergencial
-#Grupo: Camila Vieira e Lucas Piazzi
 
 #Considere conjuntos de dados com quantidades de elementos variando de 10, 100, 1000, 10.000
 #e 100.000. No sentido de identificar diferenças de comportamento dos algoritmos conforme a entrada,
@@ -54,6 +51,7 @@ class Test(object):
     # each test runned stores it's information in the following variables
     executionTimes = []
     comparisons = []
+    sizes = []
     
     # Generates a random n size vector. The numbers in the vector will be in range between -10000 and 10000.
     # unique = indicates if the numbers in the array should be unique or not
@@ -83,22 +81,32 @@ class Test(object):
     
     # Run the algorithm for the given parameters
     def runTest(self):
-        entries = copy.deepcopy(self.entries[self.n])
+        # check if the entry already exists in the dictionary, if not, creates
+        # a new n size entry and stores in the dictionary
+        if self.n in self.entries :
+            entry = copy.deepcopy(self.entries[self.n])
+        else:
+            entry = self.generateEntries(self.n)
+            self.entries[self.n] = entry
+            
         startTime = time.time()
         #each algorithm returns the numbers of comparisons made
-        count = self.algorithm(entries)
+        count = self.algorithm(entry)
         endTime = time.time()
         executionTime = endTime - startTime
         # saves the data generated from the execution in the class variables
         self.executionTimes.append(executionTime)
         self.comparisons.append(count)
+        self.sizes.append(self.n)
         
-        print("Numbers to orderes: ", self.n, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
+        print("Numbers to order: ", self.n, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
         
     # draw a graph based on the tests runned
     def drawGraph(self):
         print('Graph Generated')
+        # x axis
         names = list(self.comparisons)
+        # y axis
         values = list(self.executionTimes)
 
         fig, axs = plt.subplots(1, 3, figsize=(9, 3), sharey=True)
@@ -128,13 +136,11 @@ class Test(object):
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
 
-t = Test(1000, False, 'integer', 'random', bubbleSort)
+t = Test(10, False, 'integer', 'random', bogoSort)
 t.runTest()
-t.setTest(1000, False, 'integer', 'random', insertionSort)
+t.setTest(20, False, 'integer', 'random', bogoSort)
 t.runTest()
-t.setTest(1000, False, 'integer', 'random', selectionSort)
+t.setTest(30, False, 'integer', 'random', bogoSort)
 t.runTest()
-t.setTest(1000, False, 'integer', 'random', bogoSort)
-t.runTest()
-t.drawGraph()
+
 
