@@ -60,7 +60,7 @@ class Test(object):
     def generateEntries(self, n):
         entries = []
         if self.unique == True:
-            entries = random.sample(range(-10000, 10000), n)
+            entries = random.sample(range(-100000, 100000), n)
         else:
             i = 0
             while i < n:
@@ -113,6 +113,8 @@ class Test(object):
         axs[0].bar(names, values)
         axs[1].scatter(names, values)
         axs[2].plot(names, values)
+        
+        
         fig.suptitle('Categorical Plotting')
         plt.show()
      
@@ -136,11 +138,12 @@ class Test(object):
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
 
-t = Test(10, False, 'integer', 'random', bogoSort)
+t = Test(5, False, 'integer', 'random', bogoSort)
 t.runTest()
-t.setTest(20, False, 'integer', 'random', bogoSort)
+t.setTest(10, False, 'integer', 'random', bogoSort)
 t.runTest()
-t.setTest(30, False, 'integer', 'random', bogoSort)
-t.runTest()
+t.drawGraph()
+#t.setTest(12, False, 'integer', 'random', bogoSort)
+#t.runTest()
 
 
