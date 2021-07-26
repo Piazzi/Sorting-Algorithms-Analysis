@@ -3,7 +3,6 @@ import random
 # Sorts array a[0..n-1] using Bogo sort
 def bogoSort(arr):
     count = 0
-    count = count + 1
     while (is_sorted(arr, count) == False):
         shuffle(arr)
     return count

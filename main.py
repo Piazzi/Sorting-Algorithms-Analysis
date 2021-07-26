@@ -100,7 +100,7 @@ class Test(object):
         
         plt.xlabel('N° Comparações')
         plt.ylabel('Tempo de execução')
-        plt.title("N = 10, elementos únicos, floats e ordenados")
+        plt.title("N = 10 para o Bogo sort e N = 100 para o restante, elementos únicos, floats e ordenados")
         plt.legend()
         plt.show()
         
