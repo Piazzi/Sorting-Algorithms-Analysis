@@ -1,20 +1,25 @@
 import random
 
+from numpy.lib.index_tricks import IndexExpression
+
 # Sorts array a[0..n-1] using Bogo sort
 def bogoSort(arr):
-    count = 0
-    while (is_sorted(arr, count) == False):
+    result = False
+    while (result == False):
         shuffle(arr)
-    return count
+        result = isSorted(arr)
+    return result
  
 # To check if array is sorted or not
-def is_sorted(arr, count):
+def isSorted(arr):
     n = len(arr)
+    count = 0
     for i in range(0, n - 1):
         count = count + 1
         if (arr[i] > arr[i+1] ):
             return False
-    return True
+    # if the array is sorted returns the number of comparisons made
+    return count
  
 # To generate permutation of the array
 def shuffle(arr):
