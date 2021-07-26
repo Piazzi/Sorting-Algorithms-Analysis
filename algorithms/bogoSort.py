@@ -1,7 +1,4 @@
 import random
-
-from numpy.lib.index_tricks import IndexExpression
-
 # Sorts array a[0..n-1] using Bogo sort
 def bogoSort(arr):
     result = False

@@ -95,12 +95,12 @@ class Test(object):
         
         i = 0
         while i < len(self.algorithms):
-            plt.plot(np.linspace(0,x[i], 100), np.linspace(0, y[i], 100), label=self.algorithms[i])
+            plt.plot(np.linspace(0,x[i], 100), np.linspace(0, y[i], 100), label=self.algorithms[i] + ' (N = ' +  str(self.sizes[i]) + ')')
             i = i + 1
         
         plt.xlabel('N° Comparações')
-        plt.ylabel('Tempo de execução')
-        plt.title("N = 5 para o Bogo sort e N = 100 para o restante, elementos únicos, floats e ordenados")
+        plt.ylabel('Tempo de execução (s)')
+        plt.title("")
         plt.legend()
         plt.show()
         
@@ -121,16 +121,14 @@ class Test(object):
 # seja pelo tamanho, tipo ou configuração (ordenado, não ordenado ou quase ordenado), 
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
-# t = Test(100, True, 'float', 'random', bubbleSort)
-# t.runTest()
-# t.setTest(100, True, 'float', 'random', selectionSort)
-# t.runTest()
-# t.setTest(100, True, 'float', 'random', insertionSort)
-# t.runTest()
+t = Test(100, True, 'float', 'random', bubbleSort)
+t.runTest()
+t.setTest(100, True, 'float', 'random', selectionSort)
+t.runTest()
+t.setTest(100, True, 'float', 'random', insertionSort)
+t.runTest()
+t.setTest(5, True, 'float', 'random', bogoSort)
+t.runTest()
 
-t = Test(5, False, 'integer', 'random', bogoSort)
-t.runTest()
-t.setTest(10, True, 'integer', 'random', bogoSort)
-t.runTest()
 t.drawGraph()
 
