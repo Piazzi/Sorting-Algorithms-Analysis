@@ -37,6 +37,7 @@ class Test(object):
     executionTimes = []
     comparisons = []
     sizes = []
+    algorithms = []
     
     # Generates a random n size vector. The numbers in the vector will be in range between -10000 and 10000.
     # unique = indicates if the numbers in the array should be unique or not
@@ -45,7 +46,7 @@ class Test(object):
     def generateEntries(self, n):
         entries = []
         if self.unique == True:
-            entries = random.sample(range(-10000, 10000), n)
+            entries = random.sample(range(-10000, 10000), self.n)
         else:
             i = 0
             while i < n:
@@ -59,7 +60,6 @@ class Test(object):
             entries.sort()
         elif self.order == 'descending':
             entries.sort(reverse=True)
-            
         return entries
     
     # Run the algorithm for the given parameters
@@ -81,39 +81,28 @@ class Test(object):
         self.executionTimes.append(executionTime)
         self.comparisons.append(count)
         self.sizes.append(self.n)
+        self.algorithms.append(self.algorithm.__name__)
         
-        print("Numbers to order: ", self.n, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
+        print(self.algorithm.__name__, " --> Numbers to order: ", self.n, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
         
     # draw a graph based on the tests runned
     def drawGraph(self):
         print('Graph Generated')
         # x axis
-        names = list(self.comparisons)
+        x = list(self.comparisons)
         # y axis
-        values = list(self.executionTimes)
-
-       
-        #fig, ax = plt.subplots()  # Create a figure containing a single axes.
-        #ax.plot(names, values)  # Plot some data on the axes.
+        y = list(self.executionTimes)
         
-        fig, axs = plt.subplots(1, 3, figsize=(9, 3), sharey=True)
-        axs[0].bar(names, values)
-        axs[1].scatter(names, values)
-        axs[2].plot(names, values)
-
-        plt.ylabel('Tempo de Execução')
+        i = 0
+        while i < len(self.algorithms):
+            plt.plot(np.linspace(0,x[i], 100), np.linspace(0, y[i], 100), label=self.algorithms[i])
+            i = i + 1
+        
         plt.xlabel('N° Comparações')
-        
-        fig.suptitle(self.algorithm.__name__)
+        plt.ylabel('Tempo de execução')
+        plt.title("N = 10, elementos únicos, floats e ordenados")
+        plt.legend()
         plt.show()
-     
-        # plt.plot(x, x, label='linear')  # Plot some data on the (implicit) axes.
-        # plt.plot(x, x**2, label='quadratic')  # etc.
-        # plt.plot(x, x**3, label='cubic')
-        # plt.xlabel('x label')
-        # plt.ylabel('y label')
-        # plt.title("Simple Plot")
-        # plt.legend()
         
     # sets a new test based on the parameters 
     def setTest(self, n, unique, type, order, algorithm):
@@ -133,15 +122,13 @@ class Test(object):
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
 
-t = Test(5, False, 'integer', 'random', bubbleSort)
+t = Test(100, True, 'float', 'random', bubbleSort)
 t.runTest()
-t.setTest(10, False, 'integer', 'random', bubbleSort)
+t.setTest(100, True, 'float', 'random', selectionSort)
 t.runTest()
-t.setTest(100, False, 'integer', 'random', bubbleSort)
+t.setTest(100, True, 'float', 'random', insertionSort)
 t.runTest()
-t.setTest(1000, False, 'integer', 'random', bubbleSort)
-t.runTest()
-t.setTest(10000, False, 'integer', 'random', bubbleSort)
+t.setTest(10, True, 'float', 'random', bogoSort)
 t.runTest()
 t.drawGraph()
 

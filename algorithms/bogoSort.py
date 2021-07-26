@@ -3,17 +3,17 @@ import random
 # Sorts array a[0..n-1] using Bogo sort
 def bogoSort(arr):
     count = 0
+    count = count + 1
     while (is_sorted(arr, count) == False):
         shuffle(arr)
-        count = count + 1
     return count
  
 # To check if array is sorted or not
 def is_sorted(arr, count):
     n = len(arr)
     for i in range(0, n - 1):
+        count = count + 1
         if (arr[i] > arr[i+1] ):
-            count = count + 1
             return False
     return True
  

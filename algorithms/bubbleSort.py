@@ -8,7 +8,7 @@ def bubbleSort(arr):
             # traverse the array from 0 to n-i-1
             # Swap if the element found is greater
             # than the next element
+            count = count + 1
             if arr[j] > arr[j + 1] :
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                count = count + 1
     return count
