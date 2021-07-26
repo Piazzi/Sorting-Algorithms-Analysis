@@ -13,21 +13,6 @@ from algorithms.quickSort import quickSort
 from algorithms.mergeSort import mergeSort
 from algorithms.heapSort import heapSort
 
-#Considere conjuntos de dados com quantidades de elementos variando de 10, 100, 1000, 10.000
-#e 100.000. No sentido de identificar diferenças de comportamento dos algoritmos conforme a entrada,
-#a análise a ser apresentada deve considerar diferentes características dos dados, como casos com e
-#sem repetição de elementos, casos em que todos os elementos são inteiros, em quem todos os
-#elementos são reais não necessariamente inteiros e os casos em que os dados estão ordenadas,
-#inversamente, ordenadas, bem como quando são dispostos de forma aleatória.
-
-#Análise dos algoritmos:
-#A análise deve ser feita sobre o número de comparações entre elementos do conjunto.
-#Lembrem-se que os dados coletados devem ser organizados na forma de tabelas e a visualização
-#destes dados na forma de gráficos facilita a análise e a leitura do texto final. A partir das tabelas e
-#gráficos, desenvolva o texto sobre a análise dos algoritmos, um importante elemento do trabalho. Para
-#comparação, relacione somente os algoritmos não eficientes e eficientes entre si. Por exemplo, não
-#relacione, analise ou compare, o algoritmo BubbleSort com o QuickSort.
-
 #This is the main ADT (Abstract Data Type) of the project, it creates the entries and runs each algorithm based
 # on the parameters receveid.
 class Test(object):
@@ -75,8 +60,6 @@ class Test(object):
         elif self.order == 'descending':
             entries.sort(reverse=True)
             
-        #print(entries)
-        print('\n')
         return entries
     
     # Run the algorithm for the given parameters
@@ -110,10 +93,14 @@ class Test(object):
         values = list(self.executionTimes)
 
        
+        #fig, ax = plt.subplots()  # Create a figure containing a single axes.
+        #ax.plot(names, values)  # Plot some data on the axes.
+        
         fig, axs = plt.subplots(1, 3, figsize=(9, 3), sharey=True)
         axs[0].bar(names, values)
         axs[1].scatter(names, values)
         axs[2].plot(names, values)
+
         plt.ylabel('Tempo de Execução')
         plt.xlabel('N° Comparações')
         
@@ -137,8 +124,6 @@ class Test(object):
         self.algorithm = algorithm
 
 
-
-
 # Data for plotting
 #A ideia é que cada ponto da curva seja fotmado por um valor de n (tamanho do vetor)
 # e o respectivo tempo de processamento (ou numero de comparações).
@@ -148,14 +133,15 @@ class Test(object):
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
 
-# t = Test(5, False, 'integer', 'random', bogoSort)
-# t.runTest()
-# t.setTest(10, False, 'integer', 'random', bogoSort)
-# t.runTest()
-# t.setTest(15, False, 'integer', 'random', bogoSort)
-# t.runTest()
-# t.drawGraph()
-#t.setTest(12, False, 'integer', 'random', bogoSort)
-#t.runTest()
-
+t = Test(5, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(10, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(100, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(1000, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(10000, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.drawGraph()
 
