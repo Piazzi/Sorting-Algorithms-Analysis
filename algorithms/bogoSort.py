@@ -1,7 +1,7 @@
 import random
 # Sorts array a[0..n-1] using Bogo sort
 def bogoSort(arr):
-    result = False
+    result = isSorted(arr)
     while (result == False):
         shuffle(arr)
         result = isSorted(arr)
