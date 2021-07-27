@@ -88,7 +88,7 @@ class Test(object):
         
     # draw a graph based on the tests runned
     def drawGraph(self, axes):
-        print(self.comparisons)
+        
         if axes == 'execution time x number of comparisons':
             # x axis
             x = list(self.comparisons)
@@ -104,7 +104,6 @@ class Test(object):
             plt.xlabel('N° Comparações')
             plt.ylabel('Tempo de execução (s)')
             
-           
         else:
             bubbleSortData = {'x': [], 'y': []}
             selectionSortData = {'x': [], 'y': []}
@@ -124,8 +123,8 @@ class Test(object):
                         insertionSortData['y'].append(self.comparisons[i])
                         
                     i = i +1
-                    plt.xlabel('N° Comparações')
-                    plt.ylabel('Tamanho')
+                    plt.ylabel('N° Comparações')
+                    plt.xlabel('Tamanho')
             
             elif axes == 'execution time x size':
                 i = 0
@@ -141,8 +140,8 @@ class Test(object):
                         insertionSortData['y'].append(self.executionTimes[i])
                         
                     i = i +1
-                    plt.xlabel('Tempo de execução (s)')
-                    plt.ylabel('Tamanho')
+                    plt.ylabel('Tempo de execução (s)')
+                    plt.xlabel('Tamanho')
             
             plt.plot(bubbleSortData['x'], bubbleSortData['y'], label='bubble sort')
             plt.plot(selectionSortData['x'], selectionSortData['y'], label='selection sort')
@@ -166,21 +165,22 @@ class Test(object):
         self.algorithm = algorithm
 
 
-t = Test(50, False, 'integer', 'random', selectionSort)
-t.runTest()
-t.setTest(500, False, 'integer', 'random', selectionSort)
-t.runTest()
-t.setTest(5000, False, 'integer', 'random', selectionSort)
-t.setTest(50000, False, 'integer', 'random', selectionSort)
-t.runTest()
-
-t.setTest(50, False, 'integer', 'random', bubbleSort)
+t = Test(50, False, 'integer', 'random', bubbleSort)
 t.runTest()
 t.setTest(500, False, 'integer', 'random', bubbleSort)
 t.runTest()
 t.setTest(5000, False, 'integer', 'random', bubbleSort)
 t.runTest()
 t.setTest(50000, False, 'integer', 'random', bubbleSort)
+t.runTest()
+
+t.setTest(50, False, 'integer', 'random', selectionSort)
+t.runTest()
+t.setTest(500, False, 'integer', 'random', selectionSort)
+t.runTest()
+t.setTest(5000, False, 'integer', 'random', selectionSort)
+t.runTest()
+t.setTest(50000, False, 'integer', 'random', selectionSort)
 t.runTest()
 
 t.setTest(50, False, 'integer', 'random', insertionSort)
