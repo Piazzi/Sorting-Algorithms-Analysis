@@ -47,7 +47,6 @@ class Test(object):
         entries = []
         if self.unique == True:
             entries = random.sample(range(-10000, 10000), self.n)
-            print(entries)
         else:
             i = 0
             while i < n:
@@ -72,6 +71,11 @@ class Test(object):
         else:
             entry = self.generateEntries(self.n)
             self.entries[self.n] = entry
+            
+        if self.order == 'ascending':
+            entry.sort()
+        elif self.order == 'descending':
+            entry.sort(reverse=True)
             
         startTime = time.time()
         #each algorithm returns the numbers of comparisons made
@@ -165,32 +169,27 @@ class Test(object):
         self.algorithm = algorithm
 
 
-t = Test(50, False, 'integer', 'random', bubbleSort)
+t = Test(50, True, 'integer', 'random', bubbleSort)
 t.runTest()
-t.setTest(500, False, 'integer', 'random', bubbleSort)
+t.setTest(500, True, 'integer', 'random', bubbleSort)
 t.runTest()
-t.setTest(5000, False, 'integer', 'random', bubbleSort)
-t.runTest()
-t.setTest(50000, False, 'integer', 'random', bubbleSort)
+t.setTest(5000, True, 'integer', 'random', bubbleSort)
 t.runTest()
 
-t.setTest(50, False, 'integer', 'random', selectionSort)
+t.setTest(50, True, 'integer', 'random', selectionSort)
 t.runTest()
-t.setTest(500, False, 'integer', 'random', selectionSort)
+t.setTest(500, True, 'integer', 'random', selectionSort)
 t.runTest()
-t.setTest(5000, False, 'integer', 'random', selectionSort)
-t.runTest()
-t.setTest(50000, False, 'integer', 'random', selectionSort)
+t.setTest(5000, True, 'integer', 'random', selectionSort)
 t.runTest()
 
-t.setTest(50, False, 'integer', 'random', insertionSort)
+t.setTest(50, True, 'integer', 'random', insertionSort)
 t.runTest()
-t.setTest(500, False, 'integer', 'random', insertionSort)
+t.setTest(500, True, 'integer', 'random', insertionSort)
 t.runTest()
-t.setTest(5000, False, 'integer', 'random', insertionSort)
+t.setTest(5000, True, 'integer', 'random', insertionSort)
 t.runTest()
-t.setTest(50000, False, 'integer', 'random', insertionSort)
-t.runTest()
+
 
 t.drawGraph('execution time x size')
 
