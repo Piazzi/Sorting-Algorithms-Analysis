@@ -47,6 +47,7 @@ class Test(object):
         entries = []
         if self.unique == True:
             entries = random.sample(range(-10000, 10000), self.n)
+            print(entries)
         else:
             i = 0
             while i < n:
@@ -86,29 +87,76 @@ class Test(object):
         print(self.algorithm.__name__, " --> Numbers to order: ", self.n, 'Execution Time: ', executionTime, "s", "Number of Comparisons: ", count)
         
     # draw a graph based on the tests runned
-    def drawGraph(self):
-        print('Graph Generated')
-        # x axis
-        x = list(self.comparisons)
-        # y axis
-        y = list(self.executionTimes)
-        
-        i = 0
-        while i < len(self.algorithms):
-            plt.plot(np.linspace(0,x[i], 100), np.linspace(0, y[i], 100), label=self.algorithms[i] + ' (N = ' +  str(self.sizes[i]) + ')')
-            i = i + 1
-        
-        plt.xlabel('N° Comparações')
-        plt.ylabel('Tempo de execução (s)')
-        
+    def drawGraph(self, axes):
+        print(self.comparisons)
+        if axes == 'execution time x number of comparisons':
+            # x axis
+            x = list(self.comparisons)
+            # y axis
+            y = list(self.executionTimes)
+            
+            # plot the data
+            i = 0
+            while i < len(self.algorithms):
+                plt.plot(np.linspace(0,x[i], 100), np.linspace(0, y[i], 100), label=self.algorithms[i] + ' (N = ' +  str(self.sizes[i]) + ')')
+                i = i + 1
+            
+            plt.xlabel('N° Comparações')
+            plt.ylabel('Tempo de execução (s)')
+            
+           
+        else:
+            bubbleSortData = {'x': [], 'y': []}
+            selectionSortData = {'x': [], 'y': []}
+            insertionSortData = {'x': [], 'y': []}
+            
+            if axes == 'number of comparisons x size':
+                i = 0
+                while i < len(self.algorithms):
+                    if(self.algorithms[i] == 'bubbleSort'):
+                        bubbleSortData['x'].append(self.sizes[i])
+                        bubbleSortData['y'].append(self.comparisons[i])
+                    elif(self.algorithms[i] == 'selectionSort'):
+                        selectionSortData['x'].append(self.sizes[i])
+                        selectionSortData['y'].append(self.comparisons[i])
+                    else:
+                        insertionSortData['x'].append(self.sizes[i])
+                        insertionSortData['y'].append(self.comparisons[i])
+                        
+                    i = i +1
+                    plt.xlabel('N° Comparações')
+                    plt.ylabel('Tamanho')
+            
+            elif axes == 'execution time x size':
+                i = 0
+                while i < len(self.algorithms):
+                    if(self.algorithms[i] == 'bubbleSort'):
+                        bubbleSortData['x'].append(self.sizes[i])
+                        bubbleSortData['y'].append(self.executionTimes[i])
+                    elif(self.algorithms[i] == 'selectionSort'):
+                        selectionSortData['x'].append(self.sizes[i])
+                        selectionSortData['y'].append(self.executionTimes[i])
+                    else:
+                        insertionSortData['x'].append(self.sizes[i])
+                        insertionSortData['y'].append(self.executionTimes[i])
+                        
+                    i = i +1
+                    plt.xlabel('Tempo de execução (s)')
+                    plt.ylabel('Tamanho')
+            
+            plt.plot(bubbleSortData['x'], bubbleSortData['y'], label='bubble sort')
+            plt.plot(selectionSortData['x'], selectionSortData['y'], label='selection sort')
+            plt.plot(insertionSortData['x'], insertionSortData['y'], label='insertion sort')
+            
         # unique = 'Unique' if self.unique else 'Non unique'
         # numberType = ' floats' if self.type == 'float' else ' integers' 
         # order =  ' numbers in ' + self.order + ' order'
         # plt.title(unique + numberType + order)
         
         plt.legend()
-        plt.show()
-     
+        plt.show()    
+        print('Graph Generated')
+
     # sets a new test based on the parameters 
     def setTest(self, n, unique, type, order, algorithm):
         self.n = n
@@ -118,21 +166,31 @@ class Test(object):
         self.algorithm = algorithm
 
 
-# Data for plotting
-#A ideia é que cada ponto da curva seja fotmado por um valor de n (tamanho do vetor)
-# e o respectivo tempo de processamento (ou numero de comparações).
+t = Test(50, False, 'integer', 'random', selectionSort)
+t.runTest()
+t.setTest(500, False, 'integer', 'random', selectionSort)
+t.runTest()
+t.setTest(5000, False, 'integer', 'random', selectionSort)
+t.setTest(50000, False, 'integer', 'random', selectionSort)
+t.runTest()
 
-#Como vocês precisarão analisar diferentes eixos, para cada eixo, vocês devem ter diferentes conjuntos de entrada, 
-# seja pelo tamanho, tipo ou configuração (ordenado, não ordenado ou quase ordenado), 
-# sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
+t.setTest(50, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(500, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(5000, False, 'integer', 'random', bubbleSort)
+t.runTest()
+t.setTest(50000, False, 'integer', 'random', bubbleSort)
+t.runTest()
 
-t = Test(10000, True, 'integer', 'ascending', bubbleSort)
+t.setTest(50, False, 'integer', 'random', insertionSort)
 t.runTest()
-t.setTest(10000, True, 'integer', 'ascending', selectionSort)
+t.setTest(500, False, 'integer', 'random', insertionSort)
 t.runTest()
-t.setTest(10000, True, 'integer', 'ascending', insertionSort)
+t.setTest(5000, False, 'integer', 'random', insertionSort)
 t.runTest()
-t.setTest(10000, True, 'integer', 'ascending', bogoSort)
+t.setTest(50000, False, 'integer', 'random', insertionSort)
 t.runTest()
-t.drawGraph()
+
+t.drawGraph('execution time x size')
 
