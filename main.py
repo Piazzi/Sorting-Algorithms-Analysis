@@ -126,13 +126,13 @@ class Test(object):
 # seja pelo tamanho, tipo ou configuração (ordenado, não ordenado ou quase ordenado), 
 # sendo que precisarão de datasets com tamanhos diferentes dentro de cada eixo.
 
-t = Test(100, True, 'float', 'random', bubbleSort)
+t = Test(10000, True, 'integer', 'ascending', bubbleSort)
 t.runTest()
-t.setTest(100, True, 'float', 'random', selectionSort)
+t.setTest(10000, True, 'integer', 'ascending', selectionSort)
 t.runTest()
-t.setTest(100, True, 'float', 'random', insertionSort)
+t.setTest(10000, True, 'integer', 'ascending', insertionSort)
 t.runTest()
-t.setTest(5, True, 'float', 'random', bogoSort)
+t.setTest(10000, True, 'integer', 'ascending', bogoSort)
 t.runTest()
 t.drawGraph()
 
