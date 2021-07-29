@@ -79,6 +79,7 @@ class Test(object):
             
         startTime = time.time()
         #each algorithm returns the numbers of comparisons made
+        #print(entry)
         count = self.algorithm(entry)
         endTime = time.time()
         executionTime = endTime - startTime
@@ -112,44 +113,82 @@ class Test(object):
             bubbleSortData = {'x': [], 'y': []}
             selectionSortData = {'x': [], 'y': []}
             insertionSortData = {'x': [], 'y': []}
+            bogoSortData = {'x': [], 'y': []}
+            heapSortData = {'x': [], 'y': []}
+            mergeSortData = {'x': [], 'y': []}
+            quickSortData = {'x': [], 'y': []}
             
+            i = 0
+            # set the X axe
+            while i < len(self.algorithms):
+                if(self.algorithms[i] == 'bubbleSort'):
+                    bubbleSortData['x'].append(self.sizes[i])
+                elif(self.algorithms[i] == 'selectionSort'):
+                    selectionSortData['x'].append(self.sizes[i])
+                elif(self.algorithms[i] == 'insertionSort'):
+                    insertionSortData['x'].append(self.sizes[i])
+                elif(self.algorithms[i] == 'bogoSort'):
+                    bogoSortData['x'].append(self.sizes[i])
+                elif(self.algorithms[i] == 'heapSort'):
+                    heapSortData['x'].append(self.sizes[i])
+                elif(self.algorithms[i] == 'mergeSort'):    
+                    mergeSortData['x'].append(self.sizes[i])
+                elif(self.algorithms[i] == 'quickSort'):
+                    quickSortData['x'].append(self.sizes[i])
+                i = i + 1
+            
+            # set the y axe 
             if axes == 'number of comparisons x size':
                 i = 0
                 while i < len(self.algorithms):
                     if(self.algorithms[i] == 'bubbleSort'):
-                        bubbleSortData['x'].append(self.sizes[i])
                         bubbleSortData['y'].append(self.comparisons[i])
                     elif(self.algorithms[i] == 'selectionSort'):
-                        selectionSortData['x'].append(self.sizes[i])
                         selectionSortData['y'].append(self.comparisons[i])
-                    else:
-                        insertionSortData['x'].append(self.sizes[i])
+                    elif(self.algorithms[i] == 'insertionSort'):
                         insertionSortData['y'].append(self.comparisons[i])
-                        
+                    elif(self.algorithms[i] == 'bogoSort'):
+                        bogoSortData['y'].append(self.comparisons[i])
+                    elif(self.algorithms[i] == 'heapSort'):
+                        heapSortData['y'].append(self.comparisons[i])
+                    elif(self.algorithms[i] == 'mergeSort'):
+                        mergeSortData['y'].append(self.comparisons[i])
+                    elif(self.algorithms[i] == 'quickSort'):
+                        quickSortData['y'].append(self.comparisons[i])
                     i = i +1
                     plt.ylabel('N° Comparações')
-                    plt.xlabel('Tamanho')
-            
+                    
+            # set the y axe 
             elif axes == 'execution time x size':
                 i = 0
                 while i < len(self.algorithms):
                     if(self.algorithms[i] == 'bubbleSort'):
-                        bubbleSortData['x'].append(self.sizes[i])
                         bubbleSortData['y'].append(self.executionTimes[i])
                     elif(self.algorithms[i] == 'selectionSort'):
-                        selectionSortData['x'].append(self.sizes[i])
                         selectionSortData['y'].append(self.executionTimes[i])
-                    else:
-                        insertionSortData['x'].append(self.sizes[i])
+                    elif(self.algorithms[i] == 'insertionSort'):
                         insertionSortData['y'].append(self.executionTimes[i])
-                        
+                    elif(self.algorithms[i] == 'bogoSort'):
+                        bogoSortData['y'].append(self.executionTimes[i])
+                    elif(self.algorithms[i] == 'heapSort'):
+                        heapSortData['y'].append(self.executionTimes[i])
+                    elif(self.algorithms[i] == 'mergeSort'):
+                        mergeSortData['y'].append(self.executionTimes[i])
+                    elif(self.algorithms[i] == 'quickSort'):
+                        quickSortData['y'].append(self.executionTimes[i])
                     i = i +1
                     plt.ylabel('Tempo de execução (s)')
-                    plt.xlabel('Tamanho')
             
+            plt.xlabel('Tamanho')
+            # set the labels
             plt.plot(bubbleSortData['x'], bubbleSortData['y'], label='bubble sort')
             plt.plot(selectionSortData['x'], selectionSortData['y'], label='selection sort')
             plt.plot(insertionSortData['x'], insertionSortData['y'], label='insertion sort')
+            plt.plot(bogoSortData['x'], bogoSortData['y'], label='bogosort')
+            plt.plot(heapSortData['x'], heapSortData['y'], label='heap sort')
+            plt.plot(mergeSortData['x'], mergeSortData['y'], label='merge sort')
+            plt.plot(quickSortData['x'], quickSortData['y'], label='quick sort')
+
             
         # unique = 'Unique' if self.unique else 'Non unique'
         # numberType = ' floats' if self.type == 'float' else ' integers' 
@@ -169,27 +208,38 @@ class Test(object):
         self.algorithm = algorithm
 
 
-t = Test(50, True, 'integer', 'random', bubbleSort)
-t.runTest()
-t.setTest(500, True, 'integer', 'random', bubbleSort)
-t.runTest()
-t.setTest(5000, True, 'integer', 'random', bubbleSort)
+t = Test(10, False, 'integer', 'random', bogoSort)
 t.runTest()
 
-t.setTest(50, True, 'integer', 'random', selectionSort)
-t.runTest()
-t.setTest(500, True, 'integer', 'random', selectionSort)
-t.runTest()
-t.setTest(5000, True, 'integer', 'random', selectionSort)
+#
+
+t.setTest(10, False, 'integer', 'random', bubbleSort)
 t.runTest()
 
-t.setTest(50, True, 'integer', 'random', insertionSort)
-t.runTest()
-t.setTest(500, True, 'integer', 'random', insertionSort)
-t.runTest()
-t.setTest(5000, True, 'integer', 'random', insertionSort)
+t.setTest(100, False, 'integer', 'random', bubbleSort)
 t.runTest()
 
+t.setTest(1000, False, 'integer', 'random', bubbleSort)
+t.runTest()
+
+t.setTest(10, False, 'integer', 'random', selectionSort)
+t.runTest()
+
+t.setTest(100, False, 'integer', 'random', selectionSort)
+t.runTest()
+
+t.setTest(1000, False, 'integer', 'random', selectionSort)
+t.runTest()
+
+
+t.setTest(10, False, 'integer', 'random', insertionSort)
+t.runTest()
+
+t.setTest(100, False, 'integer', 'random', insertionSort)
+t.runTest()
+
+t.setTest(1000, False, 'integer', 'random', insertionSort)
+t.runTest()
 
 t.drawGraph('execution time x size')
 
