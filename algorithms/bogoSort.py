@@ -25,3 +25,5 @@ def shuffle(arr):
     for i in range (0,n):
         r = random.randint(0,n-1)
         arr[i], arr[r] = arr[r], arr[i]
+        
+        

@@ -79,7 +79,6 @@ class Test(object):
             
         startTime = time.time()
         #each algorithm returns the numbers of comparisons made
-        #print(entry)
         count = self.algorithm(entry)
         endTime = time.time()
         executionTime = endTime - startTime
@@ -185,9 +184,9 @@ class Test(object):
             plt.plot(selectionSortData['x'], selectionSortData['y'], label='selection sort')
             plt.plot(insertionSortData['x'], insertionSortData['y'], label='insertion sort')
             plt.plot(bogoSortData['x'], bogoSortData['y'], label='bogosort')
-            plt.plot(heapSortData['x'], heapSortData['y'], label='heap sort')
-            plt.plot(mergeSortData['x'], mergeSortData['y'], label='merge sort')
-            plt.plot(quickSortData['x'], quickSortData['y'], label='quick sort')
+            #plt.plot(heapSortData['x'], heapSortData['y'], label='heap sort')
+            #plt.plot(mergeSortData['x'], mergeSortData['y'], label='merge sort')
+            #plt.plot(quickSortData['x'], quickSortData['y'], label='quick sort')
 
             
         # unique = 'Unique' if self.unique else 'Non unique'
@@ -206,14 +205,10 @@ class Test(object):
         self.type = type
         self.order = order
         self.algorithm = algorithm
+        
 
 
-t = Test(10, False, 'integer', 'random', bogoSort)
-t.runTest()
-
-#
-
-t.setTest(10, False, 'integer', 'random', bubbleSort)
+t = Test(10, False, 'integer', 'random', bubbleSort)
 t.runTest()
 
 t.setTest(100, False, 'integer', 'random', bubbleSort)
@@ -231,7 +226,6 @@ t.runTest()
 t.setTest(1000, False, 'integer', 'random', selectionSort)
 t.runTest()
 
-
 t.setTest(10, False, 'integer', 'random', insertionSort)
 t.runTest()
 
@@ -240,6 +234,7 @@ t.runTest()
 
 t.setTest(1000, False, 'integer', 'random', insertionSort)
 t.runTest()
+
 
 t.drawGraph('execution time x size')
 
